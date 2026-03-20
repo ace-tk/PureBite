@@ -1,51 +1,53 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
 const Hero = () => {
-    return (
-        <section className="hero">
-            <div className="container hero-container">
-                <div className="hero-content">
-                    <span className="badge">100% Organic & Fresh</span>
-                    <h1 className="headline">
-                        Fresh Grocery <br />
-                        <span className="highlight">Delivered</span> to Your Door
-                    </h1>
-                    <p className="subheadline">
-                        Experience the taste of nature with our locally sourced, organic produce.
-                        Healthy living made simple and affordable.
-                    </p>
-                    <div className="cta-group">
-                        <button className="btn btn-primary">Shop Now</button>
-                        <button className="btn btn-outline">View Process</button>
-                    </div>
+  const navigate = useNavigate();
+  return (
+    <section className="hero">
+      <div className="container hero-container">
+        <div className="hero-content">
+          <span className="badge">100% Organic & Fresh</span>
+          <h1 className="headline">
+            Fresh Grocery <br />
+            <span className="highlight">Delivered</span> to Your Door
+          </h1>
+          <p className="subheadline">
+            Experience the taste of nature with our locally sourced, organic produce.
+            Healthy living made simple and affordable.
+          </p>
+          <div className="cta-group">
+            <button className="btn btn-primary" onClick={() => navigate('/login')}>Shop Now</button>
+            <button className="btn btn-outline" onClick={() => navigate('/login')}>View Process</button>
+          </div>
 
-                    <div className="stats">
-                        <div className="stat-item">
-                            <span className="stat-number">15k+</span>
-                            <span className="stat-label">Happy Customers</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">100%</span>
-                            <span className="stat-label">Organic Certified</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="hero-image-wrapper">
-                    {/* Placeholder for Hero Image - using a CSS visual for now */}
-                    <div className="hero-visual">
-                        <div className="circle-bg"></div>
-                        <img
-                            src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                            alt="Fresh Vegetables Basket"
-                            className="hero-img"
-                        />
-                    </div>
-                </div>
+          <div className="stats">
+            <div className="stat-item">
+              <span className="stat-number">15k+</span>
+              <span className="stat-label">Happy Customers</span>
             </div>
+            <div className="stat-item">
+              <span className="stat-number">100%</span>
+              <span className="stat-label">Organic Certified</span>
+            </div>
+          </div>
+        </div>
 
-            <style>{`
+        <div className="hero-image-wrapper">
+          {/* Placeholder for Hero Image - using a CSS visual for now */}
+          <div className="hero-visual">
+            <div className="circle-bg"></div>
+            <img
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              alt="Fresh Vegetables Basket"
+              className="hero-img"
+            />
+          </div>
+        </div>
+      </div>
+
+      <style>{`
         .hero {
           padding: 4rem 0;
           background: linear-gradient(to right, #F9FDF9 50%, #F0F7F1 50%);
@@ -148,24 +150,24 @@ const Hero = () => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 500px;
-          height: 500px;
+          width: 600px;
+          height: 600px;
           background-color: #E2EFE5;
           border-radius: 50%;
           z-index: -1;
         }
 
         .hero-img {
-          border-radius: 20px;
+          border-radius: 50%;
           box-shadow: var(--shadow-lg);
-          max-width: 100%;
-          height: auto;
-          transform: rotate(-2deg);
+          width: 500px;
+          height: 500px;
+          object-fit: cover;
           transition: transform 0.3s ease;
         }
 
         .hero-img:hover {
-          transform: rotate(0deg) scale(1.02);
+          transform: scale(1.02);
         }
 
         @media (max-width: 968px) {
@@ -202,10 +204,16 @@ const Hero = () => {
              width: 300px;
              height: 300px;
            }
+
+           .hero-img {
+             width: 260px;
+             height: 260px;
+             margin-top: 20px;
+           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;
