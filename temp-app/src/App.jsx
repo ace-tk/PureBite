@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Login from './components/Login';
 import Dashboard from './pages/Dashboard';
+import About from './pages/About';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route 
             path="/dashboard" 

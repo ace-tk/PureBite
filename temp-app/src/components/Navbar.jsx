@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../index.css';
 
 const Navbar = () => {
@@ -7,9 +8,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           PureBite<span className="dot">.</span>
-        </a>
+        </Link>
 
         {/* Mobile Toggle */}
         <button 
@@ -24,10 +25,10 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <a href="#home" className="nav-link">Home</a>
-          <a href="#shop" className="nav-link">Shop</a>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/shop" className="nav-link">Shop</Link>
+          <Link to="/about" className="nav-link">About</Link>
+          <Link to="/contact" className="nav-link">Contact</Link>
           
           <div className="nav-actions">
             <button className="icon-btn" aria-label="Cart">
