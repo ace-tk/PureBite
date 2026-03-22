@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Shop from './pages/Shop';
 import './App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/" element={<Hero isLoggedIn={isLoggedIn} />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login setIsLoggedIn={handleLoginStatus} />} />
