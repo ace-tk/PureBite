@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-const Hero = () => {
+const Hero = ({ isLoggedIn }) => {
   const navigate = useNavigate();
   return (
     <section className="hero">
@@ -18,8 +18,8 @@ const Hero = () => {
             Healthy living made simple and affordable.
           </p>
           <div className="cta-group">
-            <button className="btn btn-primary" onClick={() => navigate('/login')}>Shop Now</button>
-            <button className="btn btn-outline" onClick={() => navigate('/login')}>View Process</button>
+            <button className="btn btn-primary" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>Shop Now</button>
+            <button className="btn btn-outline" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>View Process</button>
           </div>
 
           <div className="stats">

@@ -8,19 +8,30 @@ import About from './pages/About';
 import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  });
+
+  const handleLoginStatus = (status) => {
+    setIsLoggedIn(status);
+    if (status) {
+      localStorage.setItem('isLoggedIn', 'true');
+    } else {
+      localStorage.removeItem('isLoggedIn');
+    }
+  };
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
-          <Route path="/" element={<Hero />} />
+          <Route path="/" element={<Hero isLoggedIn={isLoggedIn} />} />
           <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login setIsLoggedIn={handleLoginStatus} />} />
           <Route 
             path="/dashboard" 
-            element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/login" />} 
+            element={isLoggedIn ? <Dashboard setIsLoggedIn={handleLoginStatus} /> : <Navigate to="/login" />} 
           />
         </Routes>
       </div>
