@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCart } from '../context/CartContext';
 import './Shop.css';
 
 // SVG Icons
@@ -10,7 +11,7 @@ const IconLeaf = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="non
 const IconPause = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>;
 
 const CATEGORIES = [
-  "All Products", "Organic Boxes", "Fruits", "Vegetables", "Smoothies", "Dairy & Eggs", "Snacks", "Essentials"
+  "All Products", "Organic Boxes", "Fruits", "Vegetables", "Smoothies", "Dairy & Eggs"
 ];
 
 const MOCK_PRODUCTS = [
@@ -25,6 +26,7 @@ const MOCK_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
     badge: { text: "Best Seller", type: "orange" },
     tags: ["PureBite", "Eco Friendly"],
+    category: "Vegetables",
     liked: false
   },
   {
@@ -38,6 +40,7 @@ const MOCK_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&q=80&w=600",
     badge: { text: "New", type: "green" },
     tags: ["PureBite", "Juicing"],
+    category: "Organic Boxes",
     liked: false
   },
   {
@@ -51,6 +54,7 @@ const MOCK_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&q=80&w=600",
     badge: { text: "Limited", type: "orange" },
     tags: ["PureBite", "Seasonal"],
+    category: "Organic Boxes",
     liked: false
   },
   {
@@ -64,12 +68,130 @@ const MOCK_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=600",
     badge: { text: "Limited", type: "blue" },
     tags: ["PureBite", "Family", "10%"],
+    category: "Fruits",
     liked: true
+  },
+  {
+    id: 5,
+    title: "Farm Fresh Organic Eggs",
+    description: "One dozen pasture-raised, free-range organic brown eggs.",
+    price: 6.99,
+    subPrice: 5.99,
+    rating: 4.9,
+    reviews: 154,
+    image: "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&q=80&w=600",
+    badge: null,
+    tags: ["Dairy", "Farm Fresh"],
+    category: "Dairy & Eggs",
+    liked: false
+  },
+  {
+    id: 6,
+    title: "Whole Organic Milk",
+    description: "Cold, fresh, pasteurized organic whole milk.",
+    price: 4.99,
+    subPrice: 4.49,
+    rating: 4.8,
+    reviews: 110,
+    image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&q=80&w=600",
+    badge: null,
+    tags: ["Dairy", "Organic"],
+    category: "Dairy & Eggs",
+    liked: false
+  },
+  {
+    id: 7,
+    title: "Green Detox Smoothie",
+    description: "A blend of spinach, kale, apple, and ginger for a healthy start.",
+    price: 7.99,
+    subPrice: 7.19,
+    rating: 4.9,
+    reviews: 320,
+    image: "https://images.unsplash.com/photo-1610970881699-44a5587cab32?auto=format&fit=crop&q=80&w=600",
+    badge: { text: "Best Seller", type: "orange" },
+    tags: ["Detox", "Vegan"],
+    category: "Smoothies",
+    liked: true
+  },
+  {
+    id: 8,
+    title: "Berry Blast Smoothie",
+    description: "Antioxidant-rich mixed berries swirled with organic yogurt.",
+    price: 8.49,
+    subPrice: 7.64,
+    rating: 4.8,
+    reviews: 245,
+    image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=600",
+    badge: null,
+    tags: ["Antioxidant", "Berries"],
+    category: "Smoothies",
+    liked: false
+  },
+  {
+    id: 9,
+    title: "Tropical Mango Smoothie",
+    description: "Sweet mango, pineapple, and coconut water blend.",
+    price: 8.99,
+    subPrice: 8.09,
+    rating: 4.7,
+    reviews: 180,
+    image: "https://images.unsplash.com/photo-1598428914278-d0adcf296e62?auto=format&fit=crop&q=80&w=600",
+    badge: { text: "Summer", type: "green" },
+    tags: ["Tropical", "Refreshing"],
+    category: "Smoothies",
+    liked: false
+  },
+  {
+    id: 10,
+    title: "Protein Chocolate Smoothie",
+    description: "Rich cacao powder, bananas, and pea protein.",
+    price: 9.49,
+    subPrice: 8.54,
+    rating: 4.9,
+    reviews: 412,
+    image: "https://images.unsplash.com/photo-1563227448-9366fa2eb5df?auto=format&fit=crop&q=80&w=600",
+    badge: null,
+    tags: ["Protein", "Post-Workout"],
+    category: "Smoothies",
+    liked: false
+  },
+  {
+    id: 11,
+    title: "Strawberry Banana Classic",
+    description: "The timeless combination of ripe strawberries and bananas.",
+    price: 7.49,
+    subPrice: 6.74,
+    rating: 4.8,
+    reviews: 512,
+    image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&q=80&w=600",
+    badge: null,
+    tags: ["Classic", "Kids Love"],
+    category: "Smoothies",
+    liked: true
+  },
+  {
+    id: 12,
+    title: "Sunshine Citrus Blend",
+    description: "Oranges, grapefruit, and a hint of turmeric for immunity.",
+    price: 8.99,
+    subPrice: 8.09,
+    rating: 4.6,
+    reviews: 95,
+    image: "https://images.unsplash.com/photo-1622597467836-f38240662c82?auto=format&fit=crop&q=80&w=600",
+    badge: { text: "Immunity", type: "blue" },
+    tags: ["Vitamin C", "Citrus"],
+    category: "Smoothies",
+    liked: false
   }
 ];
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState("All Products");
+  const { addToCart } = useCart();
+
+  const filteredProducts = activeCategory === "All Products" 
+    ? MOCK_PRODUCTS 
+    : MOCK_PRODUCTS.filter(p => p.category === activeCategory);
 
   return (
     <div className="shop-page container">
@@ -124,11 +246,11 @@ const Shop = () => {
       {/* Products Display Section */}
       <section className="products-section">
         <div className="products-count">
-          Showing 1-4 of 24 products
+          Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
         </div>
 
         <div className="product-grid-extended">
-          {MOCK_PRODUCTS.map(product => (
+          {filteredProducts.map(product => (
             <div className="product-card-ext" key={product.id}>
               {/* Image & Badges */}
               <div className="card-image-box">
@@ -164,11 +286,11 @@ const Shop = () => {
                     <span className="price-label">from</span>
                     <span className="price-current">${product.price}</span>
                   </div>
-                  <button className="btn btn-primary btn-add-cart">Add to Cart</button>
+                  <button className="btn btn-primary btn-add-cart" onClick={() => addToCart(product)}>Add to Cart</button>
                 </div>
 
                 <div className="card-subscription">
-                  Or <strong>${product.subPrice}</strong> / week <span className="sub-tag">Subscribe 10%</span>
+                  Or <strong>${product.subPrice}</strong> / week <button className="btn-text sub-tag" onClick={() => addToCart({...product, price: product.subPrice, title: product.title + " (Subscribed)"})}>Subscribe 10%</button>
                 </div>
               </div>
             </div>

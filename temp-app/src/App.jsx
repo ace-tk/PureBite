@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
+import CartDrawer from './components/CartDrawer';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar isLoggedIn={isLoggedIn} />
+        <CartDrawer />
         <Routes>
           <Route path="/" element={<Hero isLoggedIn={isLoggedIn} />} />
           <Route path="/shop" element={<Shop />} />

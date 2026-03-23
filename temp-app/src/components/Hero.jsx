@@ -18,8 +18,8 @@ const Hero = ({ isLoggedIn }) => {
             Healthy living made simple and affordable.
           </p>
           <div className="cta-group">
-            <button className="btn btn-primary" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>Shop Now</button>
-            <button className="btn btn-outline" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>View Process</button>
+            <button className="btn btn-primary" onClick={() => navigate('/shop')}>Shop Now</button>
+            <button className="btn btn-outline" onClick={() => navigate('/about')}>View Process</button>
           </div>
 
           <div className="stats">

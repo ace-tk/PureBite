@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 
 const About = () => {
+  const navigate = useNavigate();
   return (
     <div className="about-page">
       {/* Secondary Navbar */}
@@ -21,7 +22,7 @@ const About = () => {
               </svg>
               <input type="text" placeholder="Search products..." />
             </div>
-            <button className="profile-btn" aria-label="Profile">
+            <button className="profile-btn" aria-label="Profile" onClick={() => navigate('/dashboard')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>

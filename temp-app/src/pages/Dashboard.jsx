@@ -161,7 +161,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
                     </div>
                     <div className="order-total">{order.total}</div>
                     <div className="order-action">
-                      <button className="btn-outline-sm">Reorder</button>
+                      <button className="btn-outline-sm" onClick={() => navigate('/shop')}>Reorder</button>
                     </div>
                   </div>
                 ))}
@@ -183,7 +183,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
                   <p className="sub-meta">Every Friday • $29.99 per box</p>
                   <p className="sub-desc">Your weekly dose of fresh, organic fruits and vegetables, delivered every Friday morning.</p>
                   <div className="sub-actions">
-                    <button className="btn btn-primary">Customize Next Box</button>
+                    <button className="btn btn-primary" onClick={() => navigate('/shop')}>Customize Next Box</button>
                     <button className="btn-text">Skip</button>
                     <button className="btn-text">Pause</button>
                   </div>
@@ -224,7 +224,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
                   <span className="badge badge-neutral">In 7 days</span>
                 </div>
                 <p>Your Weekly Organic Box is on the way! You can customize your items before the cutoff.</p>
-                <button className="btn btn-primary w-100 mt-3">Manage Subscription</button>
+                <button className="btn btn-primary w-100 mt-3" onClick={() => navigate('/shop')}>Manage Subscription</button>
                 <button className="btn-text w-100 text-center mt-2" style={{fontSize: '0.85rem'}}>Skip Next Delivery</button>
               </div>
             </div>

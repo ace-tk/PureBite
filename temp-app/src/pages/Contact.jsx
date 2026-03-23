@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../index.css';
 
 const Contact = () => {
+  const navigate = useNavigate();
   return (
     <div className="contact-page">
       {/* Secondary Navbar */}
@@ -69,7 +70,7 @@ const Contact = () => {
               <h3>Visit Us</h3>
             </div>
             <p className="method-detail">122 Green Way, Springfield, USA</p>
-            <button className="btn-directions">Get Directions</button>
+            <button className="btn-directions" onClick={() => navigate('/about')}>Get Directions</button>
           </div>
         </div>
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../index.css';
 
 const Navbar = ({ isLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { toggleCart, cartCount } = useCart();
 
   return (
     <nav className="navbar">
@@ -31,12 +33,22 @@ const Navbar = ({ isLoggedIn }) => {
           <Link to="/contact" className="nav-link">Contact</Link>
           
           <div className="nav-actions">
-            <button className="icon-btn" aria-label="Cart">
+            <button className="icon-btn" aria-label="Cart" onClick={toggleCart} style={{position: 'relative'}}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1"></circle>
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
+              {cartCount > 0 && (
+                <span style={{ 
+                  position: 'absolute', top: '-5px', right: '-5px', 
+                  backgroundColor: '#059669', color: 'white', 
+                  borderRadius: '50%', padding: '2px 6px', 
+                  fontSize: '0.7rem', fontWeight: 'bold' 
+                }}>
+                  {cartCount}
+                </span>
+              )}
             </button>
             {isLoggedIn ? (
               <Link to="/dashboard" className="btn btn-primary">Dashboard</Link>
