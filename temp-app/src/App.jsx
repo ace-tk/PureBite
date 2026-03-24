@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
+import HowItWorks from './pages/HowItWorks';
 import CartDrawer from './components/CartDrawer';
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero isLoggedIn={isLoggedIn} />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login setIsLoggedIn={handleLoginStatus} />} />
