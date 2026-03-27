@@ -39,19 +39,19 @@ const CartDrawer = () => {
             </div>
           ) : (
             cartItems.map(item => (
-              <div key={item.id} className="cart-item">
+              <div key={item._id} className="cart-item">
                 <img src={item.image} alt={item.title} className="cart-item-img" />
                 <div className="cart-item-details">
                   <h4 className="cart-item-title">{item.title}</h4>
-                  <p className="cart-item-price">${item.price}</p>
+                  <p className="cart-item-price">₹{item.price}</p>
                   
                   <div className="cart-item-actions">
                     <div className="quantity-controls">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                      <button onClick={() => updateQuantity(item._id, item.quantity - 1)}>-</button>
                       <span>{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                      <button onClick={() => updateQuantity(item._id, item.quantity + 1)}>+</button>
                     </div>
-                    <button className="btn-remove-item" onClick={() => removeFromCart(item.id)}>
+                    <button className="btn-remove-item" onClick={() => removeFromCart(item._id)}>
                       <IconTrash />
                     </button>
                   </div>
@@ -65,7 +65,7 @@ const CartDrawer = () => {
           <div className="cart-footer">
             <div className="cart-total">
               <span>Subtotal</span>
-              <span className="total-amount">${cartTotal.toFixed(2)}</span>
+              <span className="total-amount">₹{cartTotal.toFixed(2)}</span>
             </div>
             <p className="taxes-note">Taxes and shipping calculated at checkout</p>
             <button className="btn btn-primary btn-checkout">

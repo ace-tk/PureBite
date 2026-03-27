@@ -1,46 +1,39 @@
 # PureBite
-PureBite is a full-stack e-commerce web application that enables users to purchase organic and healthy food products, subscribe to curated grocery baskets, and make informed choices using nutrition and sustainability insights. The project focuses on real-world eCommerce workflows, clean UI, and scalable backend design.
 
+PureBite is a full-stack e-commerce web application for organic groceries, built with the MERN stack.
 
+## ✨ Features
+- **User Authentication**: Secure Sign Up and Login with JWT.
+- **Product Catalog**: Dynamic shopping experience with live data from MongoDB.
+- **Subscription Model**: Weekly and monthly organic grocery baskets.
+- **Sustainability Indicators**: Eco-scores and nutritional details for every product.
 
-User authentication (Sign Up / Login)
+## 🚀 Getting Started
 
-Browse organic groceries (fruits, vegetables, grains, dairy)
+### 1. Prerequisites
+- [Node.js](https://nodejs.org/) installed on your machine.
+- A [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) connection string.
 
-Product search and category-based filtering
+### 2. Setup
+1. Clone the repository and navigate to the project root.
+2. Update the `MONGO_URI` and `JWT_SECRET` in `backend/.env`.
 
-Add to cart and order placement
+### 3. Usage
+You can now run both the frontend and backend simultaneously from the root directory:
 
-Order history and delivery date selection
+```bash
+# Start both Frontend & Backend
+npm run dev
+```
 
-Weekly and monthly subscription-based grocery baskets
+The application will be available at:
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:5000
 
-Nutrition details per product (calories, protein, fiber)
+---
 
-Eco-score and sustainability indicators for products
-
-Admin product and inventory management
-
---Tech Stack
-
-
-
-React.js
-
-HTML5, CSS3
-
-JavaScript (ES6+)
-
-
-
-Node.js
-
-Express.js
-
-
-
-MongoDB
-
-
-
-JWT Authentication
+## 🛠️ Tech Stack
+- **Frontend**: React.js, Vite, CSS3
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Mongoose)
+- **Security**: JWT Authentication, Bcryptjs

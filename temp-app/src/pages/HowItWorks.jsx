@@ -131,7 +131,7 @@ const HowItWorks = () => {
             </div>
             <div className="feature-text">
               <h4>Free Delivery</h4>
-              <p>On orders over $50</p>
+              <p>On orders over Rs 500</p>
             </div>
           </div>
           

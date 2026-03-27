@@ -1,0 +1,15 @@
+{
+  "name": "purebite",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce application",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix backend",
+    "client": "npm run dev --prefix temp-app",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && npm install --prefix backend && npm install --prefix temp-app"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

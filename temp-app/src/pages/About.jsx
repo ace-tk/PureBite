@@ -46,7 +46,10 @@ const About = () => {
       <div className="about-content container">
         <section className="our-story">
           <h2>Our Story</h2>
-          <p>PureBite is a farming devoted from preums and elestially mat-invis frastinging effective expanically organic grails. Doxes, are etrenely hises prolite anh or rect ans qppiertint abe at ageection.</p>
+          <p>PureBite is dedicated to providing fresh, high-quality organic produce sourced directly from trusted farms.
+Our goal is to make healthy eating simple, accessible, and sustainable for everyone.
+
+We carefully curate our products to ensure freshness, nutrition, and environmental responsibility in every order.</p>
         </section>
 
         <section className="about-cards">
@@ -57,7 +60,8 @@ const About = () => {
               </svg>
               <h3>Our Mission</h3>
             </div>
-            <p>Wer hoolia your cocanna acts seith hiser to reative our thiopertment decouse with the argarity nsolietables and autality productes.</p>
+            <p>Our mission is to promote healthier lifestyles by delivering organic, nutritious, and eco-friendly products to our customers.
+We aim to support sustainable farming practices while making clean eating convenient and affordable.</p>
           </div>
           
           <div className="about-card">
@@ -68,7 +72,10 @@ const About = () => {
               </svg>
               <h3>Email Us</h3>
             </div>
-            <p>Warte mirot sabretrotat, ann our storturing mply<br/>Monday - Friday, 9 AM - 5PM (ET)</p>
+            <p>Have questions or need assistance? We’re here to help!
+
+ Monday – Friday
+⏰ 9:00 AM – 5:00 PM</p>
           </div>
         </section>
       </div>

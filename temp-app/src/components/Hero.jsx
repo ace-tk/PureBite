@@ -19,7 +19,12 @@ const Hero = ({ isLoggedIn }) => {
           </p>
           <div className="cta-group">
             <button className="btn btn-primary" onClick={() => navigate('/shop')}>Shop Now</button>
-            <button className="btn btn-outline" onClick={() => navigate('/how-it-works')}>View Process</button>
+            {!isLoggedIn && (
+              <button className="btn btn-outline" onClick={() => navigate('/login')}>Login to Start</button>
+            )}
+            {isLoggedIn && (
+              <button className="btn btn-outline" onClick={() => navigate('/how-it-works')}>View Process</button>
+            )}
           </div>
 
           <div className="stats">

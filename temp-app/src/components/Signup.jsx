@@ -2,25 +2,26 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../index.css';
 
-const Login = ({ setIsLoggedIn }) => {
+const Signup = ({ setIsLoggedIn }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5001/api/auth/login', {
+      const response = await fetch('http://localhost:5001/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await response.json();
@@ -31,7 +32,7 @@ const Login = ({ setIsLoggedIn }) => {
         setIsLoggedIn(true);
         navigate('/dashboard');
       } else {
-        setError(data.message || 'Invalid email or password');
+        setError(data.message || 'Registration failed');
       }
     } catch (err) {
       setError('Something went wrong. Is the backend running?');
@@ -43,19 +44,29 @@ const Login = ({ setIsLoggedIn }) => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Welcome Back</h2>
-        <p>Login to access your PureBite account</p>
+        <h2>Create Account</h2>
+        <p>Join PureBite for fresh, healthy meals</p>
         
         {error && <div className="error-message">{error}</div>}
         
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
+          <div className="form-group">
+            <label>Full Name</label>
+            <input 
+              type="text" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="John Doe"
+              required 
+            />
+          </div>
           <div className="form-group">
             <label>Email Address</label>
             <input 
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="user@purebite.com"
+              placeholder="user@example.com"
               required 
             />
           </div>
@@ -70,13 +81,13 @@ const Login = ({ setIsLoggedIn }) => {
             />
           </div>
           <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
         
         <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
           <p style={{ marginBottom: 0 }}>
-            Don't have an account? <Link to="/signup" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>Sign Up</Link>
+            Already have an account? <Link to="/login" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>Login</Link>
           </p>
         </div>
       </div>
@@ -135,9 +146,13 @@ const Login = ({ setIsLoggedIn }) => {
         .w-100 {
           width: 100%;
         }
+        button:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
       `}</style>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

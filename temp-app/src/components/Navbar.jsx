@@ -30,7 +30,6 @@ const Navbar = ({ isLoggedIn }) => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/shop" className="nav-link">Shop</Link>
           <Link to="/about" className="nav-link">About</Link>
-          <Link to="/contact" className="nav-link">Contact</Link>
           
           <div className="nav-actions">
             <button className="icon-btn" aria-label="Cart" onClick={toggleCart} style={{position: 'relative'}}>
@@ -51,7 +50,19 @@ const Navbar = ({ isLoggedIn }) => {
               )}
             </button>
             {isLoggedIn ? (
-              <Link to="/dashboard" className="btn btn-primary">Dashboard</Link>
+              <>
+                <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                <button 
+                  className="btn btn-outline" 
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = '/';
+                  }}
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link to="/login" className="btn btn-primary">Login</Link>
             )}

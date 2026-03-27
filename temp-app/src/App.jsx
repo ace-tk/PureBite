@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
-import Contact from './pages/Contact';
 import Shop from './pages/Shop';
 import HowItWorks from './pages/HowItWorks';
 import CartDrawer from './components/CartDrawer';
@@ -35,8 +35,8 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login setIsLoggedIn={handleLoginStatus} />} />
+          <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Signup setIsLoggedIn={handleLoginStatus} />} />
           <Route 
             path="/dashboard" 
             element={isLoggedIn ? <Dashboard setIsLoggedIn={handleLoginStatus} /> : <Navigate to="/login" />} 

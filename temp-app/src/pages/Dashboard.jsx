@@ -19,7 +19,7 @@ const MOCK_ORDERS = [
     items: "1 items",
     date: "Apr 20, 2025",
     status: "Delivered",
-    total: "$29.99",
+    total: "₹799",
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=200"
   },
   {
@@ -28,7 +28,7 @@ const MOCK_ORDERS = [
     items: "1 items",
     date: "Apr 13, 2025",
     status: "Delivered",
-    total: "$35.99",
+    total: "₹649",
     image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&q=80&w=200"
   },
   {
@@ -37,7 +37,7 @@ const MOCK_ORDERS = [
     items: "1 items",
     date: "Apr 6, 2025",
     status: "Delivered",
-    total: "$39.99",
+    total: "₹1199",
     image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&q=80&w=200"
   }
 ];
@@ -45,6 +45,10 @@ const MOCK_ORDERS = [
 const Dashboard = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState('Dashboard');
+  
+  // Get user data from localStorage
+  const user = JSON.parse(localStorage.getItem('user') || '{"name": "User", "email": "user@example.com"}');
+  const userInitials = user.name.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
 
   const menuItems = [
     { label: 'Dashboard', icon: <IconDashboard /> },
@@ -56,6 +60,8 @@ const Dashboard = ({ setIsLoggedIn }) => {
   ];
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setIsLoggedIn(false);
     navigate('/');
   };
@@ -95,7 +101,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
       {/* Main Content */}
       <main className="dash-main">
         <header className="dash-header">
-          <h1>Welcome back, Carch! 👋</h1>
+          <h1>Welcome back, {user.name.split(' ')[0]}! 👋</h1>
           <p>Here's an overview of your account activity and updates.</p>
         </header>
 
@@ -196,10 +202,10 @@ const Dashboard = ({ setIsLoggedIn }) => {
           <div className="dash-col-right">
             {/* Profile Card */}
             <div className="dash-card profile-card">
-              <div className="profile-avatar">CT</div>
+              <div className="profile-avatar">{userInitials}</div>
               <div className="profile-info">
-                <span className="profile-name">Carch Thompson</span>
-                <span className="profile-email">carch@example.com</span>
+                <span className="profile-name">{user.name}</span>
+                <span className="profile-email">{user.email}</span>
               </div>
               <a href="#" className="stat-link right-link">View Profile →</a>
             </div>

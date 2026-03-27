@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import './Shop.css';
 
@@ -14,184 +14,39 @@ const CATEGORIES = [
   "All Products", "Organic Boxes", "Fruits", "Vegetables", "Smoothies", "Dairy & Eggs"
 ];
 
-const MOCK_PRODUCTS = [
-  {
-    id: 1,
-    title: "Weekly Organic Box",
-    description: "Serves 2-3 people at peak ripeness. Sourced locally.",
-    price: 29.99,
-    subPrice: 26.99,
-    rating: 4.8,
-    reviews: 210,
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Best Seller", type: "orange" },
-    tags: ["PureBite", "Eco Friendly"],
-    category: "Vegetables",
-    liked: false
-  },
-  {
-    id: 2,
-    title: "Juicing Essentials Box",
-    description: "Serves 2-3 people for fresh morning smoothies and juices.",
-    price: 35.99,
-    subPrice: 32.39,
-    rating: 4.9,
-    reviews: 300,
-    image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "New", type: "green" },
-    tags: ["PureBite", "Juicing"],
-    category: "Organic Boxes",
-    liked: false
-  },
-  {
-    id: 3,
-    title: "Seasonal Harvest Box",
-    description: "A full organic produce box harvested precisely at the right time.",
-    price: 39.99,
-    subPrice: 29.99,
-    rating: 4.7,
-    reviews: 92,
-    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Limited", type: "orange" },
-    tags: ["PureBite", "Seasonal"],
-    category: "Organic Boxes",
-    liked: false
-  },
-  {
-    id: 4,
-    title: "Organic Fruit Box",
-    description: "Seasonal fruits picked at the orchards perfectly ripe.",
-    price: 27.99,
-    subPrice: 25.19,
-    rating: 4.9,
-    reviews: 82,
-    image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Limited", type: "blue" },
-    tags: ["PureBite", "Family", "10%"],
-    category: "Fruits",
-    liked: true
-  },
-  {
-    id: 5,
-    title: "Farm Fresh Organic Eggs",
-    description: "One dozen pasture-raised, free-range organic brown eggs.",
-    price: 6.99,
-    subPrice: 5.99,
-    rating: 4.9,
-    reviews: 154,
-    image: "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&q=80&w=600",
-    badge: null,
-    tags: ["Dairy", "Farm Fresh"],
-    category: "Dairy & Eggs",
-    liked: false
-  },
-  {
-    id: 6,
-    title: "Whole Organic Milk",
-    description: "Cold, fresh, pasteurized organic whole milk.",
-    price: 4.99,
-    subPrice: 4.49,
-    rating: 4.8,
-    reviews: 110,
-    image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&q=80&w=600",
-    badge: null,
-    tags: ["Dairy", "Organic"],
-    category: "Dairy & Eggs",
-    liked: false
-  },
-  {
-    id: 7,
-    title: "Green Detox Smoothie",
-    description: "A blend of spinach, kale, apple, and ginger for a healthy start.",
-    price: 7.99,
-    subPrice: 7.19,
-    rating: 4.9,
-    reviews: 320,
-    image: "https://images.unsplash.com/photo-1610970881699-44a5587cab32?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Best Seller", type: "orange" },
-    tags: ["Detox", "Vegan"],
-    category: "Smoothies",
-    liked: true
-  },
-  {
-    id: 8,
-    title: "Berry Blast Smoothie",
-    description: "Antioxidant-rich mixed berries swirled with organic yogurt.",
-    price: 8.49,
-    subPrice: 7.64,
-    rating: 4.8,
-    reviews: 245,
-    image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=600",
-    badge: null,
-    tags: ["Antioxidant", "Berries"],
-    category: "Smoothies",
-    liked: false
-  },
-  {
-    id: 9,
-    title: "Tropical Mango Smoothie",
-    description: "Sweet mango, pineapple, and coconut water blend.",
-    price: 8.99,
-    subPrice: 8.09,
-    rating: 4.7,
-    reviews: 180,
-    image: "https://images.unsplash.com/photo-1598428914278-d0adcf296e62?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Summer", type: "green" },
-    tags: ["Tropical", "Refreshing"],
-    category: "Smoothies",
-    liked: false
-  },
-  {
-    id: 10,
-    title: "Protein Chocolate Smoothie",
-    description: "Rich cacao powder, bananas, and pea protein.",
-    price: 9.49,
-    subPrice: 8.54,
-    rating: 4.9,
-    reviews: 412,
-    image: "https://images.unsplash.com/photo-1563227448-9366fa2eb5df?auto=format&fit=crop&q=80&w=600",
-    badge: null,
-    tags: ["Protein", "Post-Workout"],
-    category: "Smoothies",
-    liked: false
-  },
-  {
-    id: 11,
-    title: "Strawberry Banana Classic",
-    description: "The timeless combination of ripe strawberries and bananas.",
-    price: 7.49,
-    subPrice: 6.74,
-    rating: 4.8,
-    reviews: 512,
-    image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&q=80&w=600",
-    badge: null,
-    tags: ["Classic", "Kids Love"],
-    category: "Smoothies",
-    liked: true
-  },
-  {
-    id: 12,
-    title: "Sunshine Citrus Blend",
-    description: "Oranges, grapefruit, and a hint of turmeric for immunity.",
-    price: 8.99,
-    subPrice: 8.09,
-    rating: 4.6,
-    reviews: 95,
-    image: "https://images.unsplash.com/photo-1622597467836-f38240662c82?auto=format&fit=crop&q=80&w=600",
-    badge: { text: "Immunity", type: "blue" },
-    tags: ["Vitamin C", "Citrus"],
-    category: "Smoothies",
-    liked: false
-  }
-];
 
 const Shop = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All Products");
   const { addToCart } = useCart();
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/products');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const filteredProducts = activeCategory === "All Products" 
-    ? MOCK_PRODUCTS 
-    : MOCK_PRODUCTS.filter(p => p.category === activeCategory);
+    ? products 
+    : products.filter(p => p.category === activeCategory);
+
+  if (loading) return <div className="container" style={{ padding: '5rem', textAlign: 'center' }}><h2>Loading fresh products...</h2></div>;
+  if (error) return <div className="container" style={{ padding: '5rem', textAlign: 'center', color: 'red' }}><h2>Error: {error}</h2></div>;
 
   return (
     <div className="shop-page container">
@@ -251,7 +106,7 @@ const Shop = () => {
 
         <div className="product-grid-extended">
           {filteredProducts.map(product => (
-            <div className="product-card-ext" key={product.id}>
+            <div className="product-card-ext" key={product._id}>
               {/* Image & Badges */}
               <div className="card-image-box">
                 {product.badge && (
@@ -284,13 +139,13 @@ const Shop = () => {
                 <div className="card-purchase">
                   <div className="price-block">
                     <span className="price-label">from</span>
-                    <span className="price-current">${product.price}</span>
+                    <span className="price-current">₹{product.price}</span>
                   </div>
                   <button className="btn btn-primary btn-add-cart" onClick={() => addToCart(product)}>Add to Cart</button>
                 </div>
 
                 <div className="card-subscription">
-                  Or <strong>${product.subPrice}</strong> / week <button className="btn-text sub-tag" onClick={() => addToCart({...product, price: product.subPrice, title: product.title + " (Subscribed)"})}>Subscribe 10%</button>
+                  Or <strong>₹{product.subPrice}</strong> / week <button className="btn-text sub-tag" onClick={() => addToCart({...product, price: product.subPrice, title: product.title + " (Subscribed)"})}>Subscribe 10%</button>
                 </div>
               </div>
             </div>
