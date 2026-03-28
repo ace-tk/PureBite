@@ -72,10 +72,17 @@ We aim to support sustainable farming practices while making clean eating conven
               </svg>
               <h3>Email Us</h3>
             </div>
-            <p>Have questions or need assistance? We’re here to help!
-
- Monday – Friday
-⏰ 9:00 AM – 5:00 PM</p>
+            <p>Have questions or need assistance? We’re here to help!</p>
+            <div className="contact-details">
+              <a href="mailto:support@purebite.com" className="contact-email">support@purebite.com</a>
+              <p className="office-hours">
+                <span>Monday – Friday</span><br/>
+                <span>9:00 AM – 5:00 PM</span>
+              </p>
+              <button className="btn btn-secondary contact-btn" onClick={() => window.location.href = 'mailto:support@purebite.com'}>
+                Get in Touch
+              </button>
+            </div>
           </div>
         </section>
       </div>
@@ -102,10 +109,11 @@ We aim to support sustainable farming practices while making clean eating conven
           font-weight: 600;
           color: var(--color-text-muted);
           font-size: 0.95rem;
+          transition: color 0.2s;
         }
 
         .sec-nav-link.active, .sec-nav-link:hover {
-          color: var(--color-text-main);
+          color: var(--color-primary);
         }
 
         .sec-nav-actions {
@@ -122,6 +130,11 @@ We aim to support sustainable farming practices while making clean eating conven
           border-radius: var(--radius-md);
           padding: 0.5rem 1rem;
           width: 300px;
+          transition: border-color 0.2s;
+        }
+
+        .search-bar:focus-within {
+          border-color: var(--color-primary);
         }
 
         .search-icon {
@@ -151,15 +164,17 @@ We aim to support sustainable farming practices while making clean eating conven
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: background-color 0.2s;
+          transition: all 0.2s;
         }
 
         .profile-btn:hover {
-          background-color: #E0E0E0;
+          background-color: var(--color-primary);
+          color: white;
+          transform: scale(1.05);
         }
 
         .about-hero {
-          background: linear-gradient(to right, #F9FDF9 30%, transparent 60%), url('/about_hero_bg.png') no-repeat center center;
+          background: linear-gradient(to right, #F9FDF9 30%, rgba(249, 253, 249, 0.8) 60%), url('/about_hero_bg.png') no-repeat center center;
           background-size: cover;
           padding: 8rem 0;
           border-bottom: 1px solid #EAEAEA;
@@ -170,28 +185,30 @@ We aim to support sustainable farming practices while making clean eating conven
         }
 
         .about-hero-content h1 {
-          font-size: 3rem;
+          font-size: 3.5rem;
           font-weight: 700;
           color: var(--color-text-main);
           margin-bottom: 1rem;
+          letter-spacing: -1px;
         }
 
         .about-hero-content p {
-          font-size: 1.2rem;
+          font-size: 1.25rem;
           color: var(--color-text-muted);
           line-height: 1.6;
         }
 
         .about-content {
-          padding: 4rem 1rem;
+          padding: 6rem 1rem;
         }
 
         .our-story {
-          margin-bottom: 3rem;
+          margin-bottom: 4rem;
+          text-align: center;
         }
 
         .our-story h2 {
-          font-size: 2rem;
+          font-size: 2.5rem;
           font-weight: 700;
           margin-bottom: 1.5rem;
           color: var(--color-text-main);
@@ -199,41 +216,80 @@ We aim to support sustainable farming practices while making clean eating conven
 
         .our-story p {
           color: var(--color-text-muted);
-          font-size: 1.05rem;
-          max-width: 900px;
-          line-height: 1.7;
+          font-size: 1.1rem;
+          max-width: 800px;
+          margin: 0 auto;
+          line-height: 1.8;
         }
 
         .about-cards {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 3rem;
+          margin-top: 4rem;
         }
 
         .about-card {
           background-color: var(--color-white);
           border: 1px solid #EAEAEA;
-          border-radius: var(--radius-md);
-          padding: 2.5rem;
+          border-radius: var(--radius-lg);
+          padding: 3rem;
           box-shadow: var(--shadow-sm);
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .about-card:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-lg);
+          border-color: var(--color-primary-light);
         }
 
         .card-header {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.25rem;
           margin-bottom: 1.5rem;
         }
 
         .card-header h3 {
-          font-size: 1.5rem;
+          font-size: 1.75rem;
           font-weight: 600;
           color: var(--color-text-main);
         }
 
         .about-card p {
           color: var(--color-text-muted);
-          line-height: 1.6;
+          line-height: 1.7;
+          font-size: 1.05rem;
+        }
+
+        .contact-details {
+          margin-top: 1.5rem;
+          border-top: 1px solid #F0F0F0;
+          padding-top: 1.5rem;
+        }
+
+        .contact-email {
+          display: block;
+          font-weight: 700;
+          color: var(--color-primary);
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+          text-decoration: none;
+        }
+
+        .office-hours {
+          color: var(--color-text-muted);
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .contact-btn {
+          width: fit-content;
+          padding: 0.75rem 2rem;
+          font-weight: 600;
         }
       `}</style>
     </div>
