@@ -67,7 +67,7 @@ const CartDrawer = () => {
               <span>Subtotal</span>
               <span className="total-amount">₹{cartTotal.toFixed(2)}</span>
             </div>
-            <p className="taxes-note">Taxes and shipping calculated at checkout</p>
+            <p className="taxes-note">T and shipping calculated at checkout</p>
             <button className="btn btn-primary btn-checkout">
               Checkout
             </button>
