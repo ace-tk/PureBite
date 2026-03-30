@@ -229,7 +229,7 @@ const Dashboard = ({ setIsLoggedIn }) => {
                   <span>Wednesday, May 1</span>
                   <span className="badge badge-neutral">In 7 days</span>
                 </div>
-                <p>Your Weekly Organic Box is on the way! You can customize your items before the cutoff.</p>
+                {/* <p>Your Weekly Organic Box is on the way! You can customize your items before the cutoff.</p> */}
                 <button className="btn btn-primary w-100 mt-3" onClick={() => navigate('/shop')}>Manage Subscription</button>
                 <button className="btn-text w-100 text-center mt-2" style={{fontSize: '0.85rem'}}>Skip Next Delivery</button>
               </div>
